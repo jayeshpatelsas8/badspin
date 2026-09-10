@@ -136,6 +136,8 @@ static struct device_config {
         .name = "OnePlus9",
         .model = "LE2115",
         .android_version = 12,
+        .android_security_patch.year = 2022,
+        .android_security_patch.month = 6,
         .kernel_version = KERNEL_VERSION(5, 4, 147),
         .kimg_to_lm = pixel_kimg_to_lm,  // start with Pixel-style mapping
         .find_kbase = offset_kbase,
