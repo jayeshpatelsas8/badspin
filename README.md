@@ -1,3 +1,5 @@
+One Plus 9 running 5.4.147 added !! enjoy root on your One Plus 9  device running android 12 kernel version 5.4.147 security patch before October 2022 , because this vulnerability was patched at that time 
+
 # Bad Spin: Android Binder LPE
 
 Author: Moshe Kol
